@@ -296,12 +296,12 @@ class ModchartState
 	{
 		#if FEATURE_FILESYSTEM
 		// TODO: Make this use OpenFlAssets.
-		var data:BitmapData = BitmapData.fromFile(Sys.getCwd() + "assets/data/songs/" + PlayState.SONG.songId + '/' + spritePath + ".png");
+		var data:BitmapData = BitmapData.fromFile(SUtil.getPath() + "assets/data/songs/" + PlayState.SONG.songId + '/' + spritePath + ".png");
 
 		var sprite:FlxSprite = new FlxSprite(0, 0);
 
 		sprite.frames = FlxAtlasFrames.fromSparrow(FlxGraphic.fromBitmapData(data),
-			Sys.getCwd() + "assets/data/songs/" + PlayState.SONG.songId + "/" + spritePath + ".xml");
+			SUtil.getPath() + "assets/data/songs/" + PlayState.SONG.songId + "/" + spritePath + ".xml");
 
 		trace(sprite.frames.frames.length);
 
@@ -336,7 +336,7 @@ class ModchartState
 				songLowercase = 'milf';
 		}
 
-		var path = Sys.getCwd() + "assets/data/songs/" + PlayState.SONG.songId + '/';
+		var path = SUtil.getPath() + "assets/data/songs/" + PlayState.SONG.songId + '/';
 
 		if (PlayState.isSM)
 			path = PlayState.pathToSm + "/";
@@ -425,7 +425,7 @@ class ModchartState
 		if (PlayState.isSM)
 			path = PlayState.pathToSm + "/modchart.lua";
 
-		var result = LuaL.dofile(lua, path); // execute le file
+		var result = LuaL.dofile(lua, SUtil.getPath() + path); // execute le file
 
 		if (result != 0)
 		{
