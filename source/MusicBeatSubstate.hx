@@ -3,23 +3,19 @@ package;
 import lime.app.Application;
 import openfl.Lib;
 import flixel.text.FlxText;
-import flixel.input.gamepad.FlxGamepad;
 import Conductor.BPMChangeEvent;
 import flixel.FlxG;
 import flixel.FlxSubState;
+#if android
+import flixel.input.actions.FlxActionInput;
+import ui.FlxVirtualPad;
+#end
 
 class MusicBeatSubstate extends FlxSubState
 {
 	public function new()
 	{
 		super();
-	}
-
-	override function destroy()
-	{
-		Application.current.window.onFocusIn.remove(onWindowFocusOut);
-		Application.current.window.onFocusIn.remove(onWindowFocusIn);
-		super.destroy();
 	}
 
 	override function create()
@@ -38,6 +34,42 @@ class MusicBeatSubstate extends FlxSubState
 
 	inline function get_controls():Controls
 		return PlayerSettings.player1.controls;
+
+	#if android
+	var _virtualpad:FlxVirtualPad;
+	var trackedinputs:Array<FlxActionInput> = [];
+	#end
+	
+	public function addVirtualPad(?DPad:FlxDPadMode, ?Action:FlxActionMode) {
+		#if android
+		_virtualpad = new FlxVirtualPad(DPad, Action);
+		_virtualpad.alpha = 0.75;
+		add(_virtualpad);
+		controls.setVirtualPad(_virtualpad, DPad, Action);
+		trackedinputs = controls.trackedinputs;
+		controls.trackedinputs = [];
+		#end
+	}
+
+        public function addPadCamera() {
+		#if android
+		var camcontrol = new flixel.FlxCamera();
+		FlxG.cameras.add(camcontrol);
+		camcontrol.bgColor.alpha = 0;
+		_virtualpad.cameras = [camcontrol];
+		#end
+	}
+	
+	override function destroy() {
+		#if android
+		controls.removeFlxInput(trackedinputs);
+		#end
+
+		Application.current.window.onFocusIn.remove(onWindowFocusOut);
+		Application.current.window.onFocusIn.remove(onWindowFocusIn);
+		
+		super.destroy();
+	}
 
 	override function update(elapsed:Float)
 	{
@@ -63,12 +95,6 @@ class MusicBeatSubstate extends FlxSubState
 				stepHit();
 			}
 		}
-
-		var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
-		if (gamepad != null)
-			KeyBinds.gamepad = true;
-		else
-			KeyBinds.gamepad = false;
 
 		super.update(elapsed);
 	}

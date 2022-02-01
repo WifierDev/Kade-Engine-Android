@@ -2,7 +2,6 @@ package;
 
 import flixel.FlxCamera;
 import flixel.FlxSubState;
-import flixel.input.gamepad.FlxGamepad;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import openfl.Lib;
@@ -124,15 +123,15 @@ class OptionsMenu extends FlxSubState
 				new GhostTapOption("Toggle counting pressing a directional input when no arrow is there as a miss."),
 				new DownscrollOption("Toggle making the notes scroll down rather than up."),
 				new BotPlay("A bot plays for you!"),
-				#if desktop new FPSCapOption("Change your FPS Cap."),
-				#end
+				new FPSCapOption("Change your FPS Cap."),
 				new ResetButtonOption("Toggle pressing R to gameover."),
 				new InstantRespawn("Toggle if you instantly respawn after dying."),
 				new CamZoomOption("Toggle the camera zoom in-game."),
 				// new OffsetMenu("Get a note offset based off of your inputs!"),
 				new DFJKOption(),
 				new Judgement("Create a custom judgement preset"),
-				new CustomizeGameplay("Drag and drop gameplay modules to your prefered positions!")
+				new CustomizeGameplay("Drag and drop gameplay modules to your prefered positions!"),
+				new AndroidControls(""),
 			]),
 			new OptionCata(345, 40, "Appearance", [
 				new NoteskinOption("Change your current noteskin"), new EditorRes("Not showing the editor grid will greatly increase editor performance"),
@@ -158,8 +157,6 @@ class OptionsMenu extends FlxSubState
 				new ShowInput("Display every single input on the score screen."),
 			]),
 			new OptionCata(935, 40, "Saves", [
-				#if desktop // new ReplayOption("View saved song replays."),
-				#end
 				new ResetScoreOption("Reset your score on all songs and weeks. This is irreversible!"),
 				new LockWeeksOption("Reset your story mode progress. This is irreversible!"),
 				new ResetSettings("Reset ALL your settings. This is irreversible!")
@@ -340,8 +337,6 @@ class OptionsMenu extends FlxSubState
 	{
 		super.update(elapsed);
 
-		var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
-
 		var accept = false;
 		var right = false;
 		var left = false;
@@ -350,14 +345,14 @@ class OptionsMenu extends FlxSubState
 		var any = false;
 		var escape = false;
 
-		accept = FlxG.keys.justPressed.ENTER || (gamepad != null ? gamepad.justPressed.A : false);
-		right = FlxG.keys.justPressed.RIGHT || (gamepad != null ? gamepad.justPressed.DPAD_RIGHT : false);
-		left = FlxG.keys.justPressed.LEFT || (gamepad != null ? gamepad.justPressed.DPAD_LEFT : false);
-		up = FlxG.keys.justPressed.UP || (gamepad != null ? gamepad.justPressed.DPAD_UP : false);
-		down = FlxG.keys.justPressed.DOWN || (gamepad != null ? gamepad.justPressed.DPAD_DOWN : false);
+		accept = FlxG.keys.justPressed.ENTER;
+		right = FlxG.keys.justPressed.RIGHT;
+		left = FlxG.keys.justPressed.LEFT;
+		up = FlxG.keys.justPressed.UP;
+		down = FlxG.keys.justPressed.DOWN;
 
-		any = FlxG.keys.justPressed.ANY || (gamepad != null ? gamepad.justPressed.ANY : false);
-		escape = FlxG.keys.justPressed.ESCAPE || (gamepad != null ? gamepad.justPressed.B : false);
+		any = FlxG.keys.justPressed.ANY;
+		escape = FlxG.keys.justPressed.ESCAPE;
 
 		if (selectedCat != null && !isInCat)
 		{
@@ -452,7 +447,7 @@ class OptionsMenu extends FlxSubState
 						else if (any)
 						{
 							var object = selectedCat.optionObjects.members[selectedOptionIndex];
-							selectedOption.onType(gamepad == null ? FlxG.keys.getIsDown()[0].ID.toString() : gamepad.firstJustPressedID());
+							selectedOption.onType(FlxG.keys.getIsDown()[0].ID.toString());
 							object.text = "> " + selectedOption.getValue();
 							Debug.logTrace("New text: " + object.text);
 						}

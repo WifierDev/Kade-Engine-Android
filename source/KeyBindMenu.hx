@@ -114,8 +114,6 @@ class KeyBindMenu extends FlxSubState
 
 	override function update(elapsed:Float)
 	{
-		var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
-
 		if (frames <= 10)
 			frames++;
 
@@ -154,35 +152,6 @@ class KeyBindMenu extends FlxSubState
 				else if (FlxG.keys.justPressed.BACKSPACE)
 				{
 					reset();
-				}
-				if (gamepad != null) // GP Logic
-				{
-					if (gamepad.justPressed.DPAD_UP)
-					{
-						FlxG.sound.play(Paths.sound('scrollMenu'));
-						changeItem(-1);
-						textUpdate();
-					}
-					if (gamepad.justPressed.DPAD_DOWN)
-					{
-						FlxG.sound.play(Paths.sound('scrollMenu'));
-						changeItem(1);
-						textUpdate();
-					}
-
-					if (gamepad.justPressed.START && frames > 10)
-					{
-						FlxG.sound.play(Paths.sound('scrollMenu'));
-						state = "input";
-					}
-					else if (gamepad.justPressed.LEFT_TRIGGER)
-					{
-						quit();
-					}
-					else if (gamepad.justPressed.RIGHT_TRIGGER)
-					{
-						reset();
-					}
 				}
 
 			case "input":

@@ -1,4 +1,3 @@
-import flixel.input.gamepad.FlxGamepad;
 import openfl.Lib;
 import flixel.FlxG;
 
@@ -160,10 +159,6 @@ class KadeEngineData
 		// Gonna make this an option on another PR
 		if (FlxG.save.data.overrideNoteskins == null)
 			FlxG.save.data.overrideNoteskins = false;
-
-		var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
-
-		KeyBinds.gamepad = gamepad != null;
 
 		Conductor.recalculateTimings();
 		PlayerSettings.player1.controls.loadKeyBinds();

@@ -6,7 +6,6 @@ import flixel.math.FlxRect;
 import Song.SongData;
 import Section.SwagSection;
 import flixel.system.FlxSound;
-import flixel.input.gamepad.FlxGamepad;
 import flixel.util.FlxAxes;
 import flixel.FlxSubState;
 import Options.Option;
@@ -245,47 +244,6 @@ class DiffOverview extends FlxSubState
 			stopDoingShit = true;
 			quit();
 		}
-
-		var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
-
-		if (gamepad != null)
-			if (gamepad.justPressed.X)
-			{
-				stopDoingShit = true;
-				quit();
-			}
-
-		/*if (FlxG.keys.pressed.RIGHT)
-			{
-				if (FlxG.keys.pressed.SHIFT)
-				{
-					FlxG.save.data.offset++;
-					offsetChange();
-				}
-			}
-			if (FlxG.keys.pressed.LEFT)
-			{
-				if (FlxG.keys.pressed.SHIFT)
-				{
-					FlxG.save.data.offset--;
-					offsetChange();
-				}
-			}
-
-			if (FlxG.keys.justPressed.RIGHT)
-			{
-				FlxG.save.data.offset++;
-				offsetChange();
-			}
-			if (FlxG.keys.justPressed.LEFT)
-			{
-				FlxG.save.data.offset--;
-				offsetChange();
-			}
-
-
-			offset.text = "Offset: " + HelperFunctions.truncateFloat(FlxG.save.data.offset,0) + " (LEFT/RIGHT to decrease/increase, SHIFT to go faster) - Time: " + HelperFunctions.truncateFloat(Conductor.songPosition / 1000,0) + "s - Step: " + currentStep;
-		 */
 
 		if (vocals != null)
 			if (vocals.playing)

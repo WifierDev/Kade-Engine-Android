@@ -338,8 +338,10 @@ class ModchartState
 
 		var path = SUtil.getPath() + "assets/data/songs/" + PlayState.SONG.songId + '/';
 
+		#if FEATURE_STEPMANIA
 		if (PlayState.isSM)
 			path = PlayState.pathToSm + "/";
+		#end
 
 		var data:BitmapData = BitmapData.fromFile(path + spritePath + ".png");
 
@@ -422,8 +424,10 @@ class ModchartState
 		}
 
 		var path = Paths.lua('songs/${PlayState.SONG.songId}/modchart');
+		#if FEATURE_STEPMANIA
 		if (PlayState.isSM)
 			path = PlayState.pathToSm + "/modchart.lua";
+		#end
 
 		var result = LuaL.dofile(lua, SUtil.getPath() + path); // execute le file
 

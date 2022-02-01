@@ -1838,3 +1838,29 @@ class ResetSettings extends Option
 		return confirm ? "Confirm Settings Reset" : "Reset Settings";
 	}
 }
+
+class AndroidControls extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		if (OptionsMenu.isInPause)
+			description = "This option cannot be toggled in the pause menu.";
+		else
+			description = desc;
+	}
+
+	public override function press():Bool
+	{
+		if (OptionsMenu.isInPause)
+			return false;
+		trace("switch");
+		FlxG.switchState(new CastomAndroidControls());
+		return false;
+	}
+
+	private override function updateDisplay():String
+	{
+		return "Android Controls";
+	}
+}

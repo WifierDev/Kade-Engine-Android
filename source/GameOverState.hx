@@ -4,7 +4,6 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.graphics.frames.FlxAtlasFrames;
-import flixel.input.gamepad.FlxGamepad;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 
@@ -59,8 +58,6 @@ class GameOverState extends FlxTransitionableState
 	{
 		var pressed:Bool = FlxG.keys.justPressed.ANY;
 
-		var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
-
 		if (FlxG.save.data.InstantRespawn)
 		{
 			fading = true;
@@ -69,12 +66,6 @@ class GameOverState extends FlxTransitionableState
 				FlxG.sound.music.stop();
 				LoadingState.loadAndSwitchState(new PlayState());
 			});
-		}
-
-		if (gamepad != null)
-		{
-			if (gamepad.justPressed.ANY)
-				pressed = true;
 		}
 
 		pressed = false;
