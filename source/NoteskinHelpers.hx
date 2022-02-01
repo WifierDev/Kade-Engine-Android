@@ -77,7 +77,7 @@ class NoteskinHelpers
 
 		Debug.logTrace("bruh momento");
 
-		var path = FileSystem.absolutePathSUtil.getPath() + ("assets/shared/images/noteskins") + "/" + getNoteskinByID(id) + "-pixel" + (ends ? "-ends" : "");
+		var path = FileSystem.absolutePath(SUtil.getPath() + "assets/shared/images/noteskins") + "/" + getNoteskinByID(id) + "-pixel" + (ends ? "-ends" : "");
 		if (!FileSystem.exists(path + ".png"))
 		{
 			Debug.logTrace("getting default pixel skin");
