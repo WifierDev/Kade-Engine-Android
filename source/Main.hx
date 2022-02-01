@@ -84,9 +84,7 @@ class Main extends Sprite
 			gameHeight = Math.ceil(stageHeight / zoom);
 		}
 
-		#if !cpp
-		framerate = 60;
-		#end
+		SUtil.doTheCheck();
 
 		// Run this first so we can see logs.
 		Debug.onInitProgram();
