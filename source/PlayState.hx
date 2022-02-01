@@ -2270,7 +2270,7 @@ class PlayState extends MusicBeatState
 		var pauseBind = FlxKey.fromString(FlxG.save.data.pauseBind);
 		var gppauseBind = FlxKey.fromString(FlxG.save.data.gppauseBind);
 
-		if ((FlxG.keys.anyJustPressed([pauseBind]) || FlxG.keys.anyJustPressed([gppauseBind]))
+		if ((FlxG.keys.anyJustPressed([pauseBind]))
 			&& startedCountdown
 			&& canPause
 			&& !cannotDie)
