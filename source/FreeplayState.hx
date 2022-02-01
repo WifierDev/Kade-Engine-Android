@@ -272,7 +272,7 @@ class FreeplayState extends MusicBeatState
 			});
 			#else
 			FlxG.sound.cache(Paths.inst(songId));
-			#end/*
+			#end*/
 		}
 	}
 
