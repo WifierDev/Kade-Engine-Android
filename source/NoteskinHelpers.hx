@@ -16,8 +16,6 @@ class NoteskinHelpers
 		noteskinArray = [];
 		xmlData = [];
 		noteskinArray = ["Arrows", "Circles"];
-		#end
-
 		return noteskinArray;
 	}
 
