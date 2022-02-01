@@ -363,9 +363,6 @@ class PlayState extends MusicBeatState
 		if (executeModchart)
 			PlayStateChangeables.Optimize = false;
 		#end
-		#if !cpp
-		executeModchart = false; // FORCE disable for non cpp targets
-		#end
 
 		Debug.logInfo('Searching for mod chart? ($executeModchart) at ${Paths.lua('songs/${PlayState.SONG.songId}/modchart')}');
 
