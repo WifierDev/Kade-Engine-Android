@@ -36,6 +36,6 @@ class NoteskinHelpers
 
 	static public function generatePixelSprite(id:Int, ends:Bool = false)
 	{
-		return BitmapData.fromFile(Paths.image('noteskins/Arrows-pixel', "shared"));
+		return BitmapData.fromFile(SUtil.getPath() + Paths.image('noteskins/Arrows-pixel', "shared"));
 	}
 }
