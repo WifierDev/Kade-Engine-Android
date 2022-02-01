@@ -40,7 +40,7 @@ class LoadReplayState extends MusicBeatState
 		var menuBG:FlxSprite = new FlxSprite().loadGraphic(Paths.loadImage('menuDesat'));
 		// TODO: Refactor this to use OpenFlAssets.
 		#if FEATURE_FILESYSTEM
-		controlsStrings = sys.FileSystem.readDirectory(Sys.getCwd() + "/assets/replays/");
+		controlsStrings = sys.FileSystem.readDirectory(SUtil.getPath() + "assets/replays/");
 		#end
 		trace(controlsStrings);
 
@@ -185,7 +185,7 @@ class LoadReplayState extends MusicBeatState
 
 				#if FEATURE_STEPMANIA
 				if (PlayState.rep.replay.sm)
-					if (!FileSystem.exists(StringTools.replace(PlayState.rep.replay.chartPath, "converted.json", "")))
+					if (!FileSystem.exists(SUtil.getPath() + StringTools.replace(PlayState.rep.replay.chartPath, "converted.json", "")))
 					{
 						Application.current.window.alert("The SM file in this replay does not exist!", "SM Replays");
 						return;
@@ -201,7 +201,7 @@ class LoadReplayState extends MusicBeatState
 				#if FEATURE_STEPMANIA
 				if (PlayState.isSM)
 				{
-					songPath = File.getContent(PlayState.rep.replay.chartPath);
+					songPath = File.getContent(SUtil.getPath() + PlayState.rep.replay.chartPath);
 					try
 					{
 						PlayState.sm = SMFile.loadFile(PlayState.pathToSm + "/" + StringTools.replace(PlayState.rep.replay.songName, " ", "_") + ".sm");
@@ -223,7 +223,7 @@ class LoadReplayState extends MusicBeatState
 				{
 					if (PlayState.isSM)
 					{
-						PlayState.SONG = Song.loadFromJsonRAW(songPath);
+						PlayState.SONG = Song.loadFromJsonRAW(SUtil.getPath() + songPath);
 					}
 					else
 					{
