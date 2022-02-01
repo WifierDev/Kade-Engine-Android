@@ -21,13 +21,13 @@ class NoteskinHelpers
 		xmlData = [];
 		#if FEATURE_FILESYSTEM
 		var count:Int = 0;
-		for (i in FileSystem.readDirectory(FileSystem.absolutePath("assets/shared/images/noteskins")))
+		for (i in FileSystem.readDirectory(FileSystem.absolutePath(SUtil.getPath() + "assets/shared/images/noteskins")))
 		{
 			if (i.contains("-pixel"))
 				continue;
 			if (i.endsWith(".xml"))
 			{
-				xmlData.push(sys.io.File.getContent(FileSystem.absolutePath("assets/shared/images/noteskins") + "/" + i));
+				xmlData.push(sys.io.File.getContent(FileSystem.absolutePath(SUtil.getPath() + "assets/shared/images/noteskins") + "/" + i));
 				continue;
 			}
 
@@ -59,7 +59,7 @@ class NoteskinHelpers
 
 		Debug.logTrace("bruh momento");
 
-		var path = FileSystem.absolutePath("assets/shared/images/noteskins") + "/" + getNoteskinByID(id);
+		var path = FileSystem.absolutePath(SUtil.getPath() + "assets/shared/images/noteskins") + "/" + getNoteskinByID(id);
 		var data:BitmapData = BitmapData.fromFile(path + ".png");
 
 		return FlxAtlasFrames.fromSparrow(FlxGraphic.fromBitmapData(data), xmlData[id]);
@@ -77,11 +77,11 @@ class NoteskinHelpers
 
 		Debug.logTrace("bruh momento");
 
-		var path = FileSystem.absolutePath("assets/shared/images/noteskins") + "/" + getNoteskinByID(id) + "-pixel" + (ends ? "-ends" : "");
+		var path = FileSystem.absolutePathSUtil.getPath() + ("assets/shared/images/noteskins") + "/" + getNoteskinByID(id) + "-pixel" + (ends ? "-ends" : "");
 		if (!FileSystem.exists(path + ".png"))
 		{
 			Debug.logTrace("getting default pixel skin");
-			return BitmapData.fromFile(FileSystem.absolutePath("assets/shared/images/noteskins") + "/Arrows-pixel" + (ends ? "-ends" : "") + ".png");
+			return BitmapData.fromFile(FileSystem.absolutePath(SUtil.getPath() + "assets/shared/images/noteskins") + "/Arrows-pixel" + (ends ? "-ends" : "") + ".png");
 		}
 		return BitmapData.fromFile(path + ".png");
 
