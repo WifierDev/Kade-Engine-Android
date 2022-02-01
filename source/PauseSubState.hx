@@ -165,7 +165,7 @@ class PauseSubState extends MusicBeatSubstate
 			rightPcontroller = gamepad.justPressed.DPAD_RIGHT;
 		}
 
-		var songPath = 'assets/data/songs/${PlayState.SONG.songId}/';
+		var songPath = SUtil.getPath() + 'assets/data/songs/${PlayState.SONG.songId}/';
 
 		#if FEATURE_STEPMANIA
 		if (PlayState.isSM && !PlayState.isStoryMode)
