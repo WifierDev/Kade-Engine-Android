@@ -88,17 +88,17 @@ class FreeplayState extends MusicBeatState
 		#elseif FEATURE_STEPMANIA
 		// TODO: Refactor this to use OpenFlAssets.
 		trace("tryin to load sm files");
-		for (i in FileSystem.readDirectory("assets/sm/"))
+		for (i in FileSystem.readDirectory(SUtil.getPath() + "assets/sm"))
 		{
 			trace(i);
-			if (FileSystem.isDirectory("assets/sm/" + i))
+			if (FileSystem.isDirectory(SUtil.getPath() + "assets/sm/" + i))
 			{
 				trace("Reading SM file dir " + i);
-				for (file in FileSystem.readDirectory("assets/sm/" + i))
+				for (file in FileSystem.readDirectory(SUtil.getPath() + "assets/sm/" + i))
 				{
 					if (file.contains(" "))
-						FileSystem.rename("assets/sm/" + i + "/" + file, "assets/sm/" + i + "/" + file.replace(" ", "_"));
-					if (file.endsWith(".sm") && !FileSystem.exists("assets/sm/" + i + "/converted.json"))
+						FileSystem.rename(SUtil.getPath() + "assets/sm/" + i + "/" + file, "assets/sm/" + i + "/" + file.replace(" ", "_"));
+					if (file.endsWith(".sm") && !FileSystem.exists(SUtil.getPath() + "assets/sm/" + i + "/converted.json"))
 					{
 						trace("reading " + file);
 						var file:SMFile = SMFile.loadFile("assets/sm/" + i + "/" + file.replace(" ", "_"));
@@ -109,7 +109,7 @@ class FreeplayState extends MusicBeatState
 						var song = Song.loadFromJsonRAW(data);
 						songData.set(file.header.TITLE, [song, song, song]);
 					}
-					else if (FileSystem.exists("assets/sm/" + i + "/converted.json") && file.endsWith(".sm"))
+					else if (FileSystem.exists(SUtil.getPath() + "assets/sm/" + i + "/converted.json") && file.endsWith(".sm"))
 					{
 						trace("reading " + file);
 						var file:SMFile = SMFile.loadFile("assets/sm/" + i + "/" + file.replace(" ", "_"));
@@ -117,7 +117,7 @@ class FreeplayState extends MusicBeatState
 						var data = file.convertToFNF("assets/sm/" + i + "/converted.json");
 						var meta = new FreeplaySongMetadata(file.header.TITLE, 0, "sm", file, "assets/sm/" + i);
 						songs.push(meta);
-						var song = Song.loadFromJsonRAW(File.getContent("assets/sm/" + i + "/converted.json"));
+						var song = Song.loadFromJsonRAW(File.getContent(SUtil.getPath() + "assets/sm/" + i + "/converted.json"));
 						trace("got content lol");
 						songData.set(file.header.TITLE, [song, song, song]);
 					}
