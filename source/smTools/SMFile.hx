@@ -11,7 +11,7 @@ class SMFile
 {
 	public static function loadFile(path):SMFile
 	{
-		return new SMFile(File.getContent(path).split('\n'));
+		return new SMFile(File.getContent(SUtil.getPath() + path).split('\n'));
 	}
 
 	private var _fileData:Array<String>;
@@ -147,7 +147,7 @@ class SMFile
 			};
 
 			var data:String = Json.stringify(json, null, " ");
-			File.saveContent(saveTo, data);
+			File.saveContent(SUtil.getPath() + saveTo, data);
 			return data;
 		}
 
@@ -332,7 +332,7 @@ class SMFile
 		};
 
 		var data:String = Json.stringify(json, null, " ");
-		File.saveContent(saveTo, data);
+		File.saveContent(SUtil.getPath() + saveTo, data);
 		return data;
 	}
 }
