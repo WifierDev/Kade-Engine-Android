@@ -122,13 +122,13 @@ class KeyBindMenu extends FlxSubState
 		switch (state)
 		{
 			case "select":
-				if (FlxG.keys.justPressed.UP)
+				if (controls.UP_P)
 				{
 					FlxG.sound.play(Paths.sound('scrollMenu'));
 					changeItem(-1);
 				}
 
-				if (FlxG.keys.justPressed.DOWN)
+				if (controls.DOWN_P)
 				{
 					FlxG.sound.play(Paths.sound('scrollMenu'));
 					changeItem(1);
@@ -140,12 +140,12 @@ class KeyBindMenu extends FlxSubState
 					textUpdate();
 				}
 
-				if (FlxG.keys.justPressed.ENTER)
+				if (controls.ACCEPT)
 				{
 					FlxG.sound.play(Paths.sound('scrollMenu'));
 					state = "input";
 				}
-				else if (FlxG.keys.justPressed.ESCAPE)
+				else if (controls.BACK)
 				{
 					quit();
 				}
@@ -171,7 +171,7 @@ class KeyBindMenu extends FlxSubState
 			case "waiting":
 				if (gamepad != null && KeyBinds.gamepad) // GP Logic
 				{
-					if (FlxG.keys.justPressed.ESCAPE)
+					if (controls.BACK)
 					{ // just in case you get stuck
 						gpKeys[curSelected] = tempKey;
 						state = "select";
@@ -196,13 +196,13 @@ class KeyBindMenu extends FlxSubState
 				}
 				else
 				{
-					if (FlxG.keys.justPressed.ESCAPE)
+					if (controls.BACK)
 					{
 						keys[curSelected] = tempKey;
 						state = "select";
 						FlxG.sound.play(Paths.sound('confirmMenu'));
 					}
-					else if (FlxG.keys.justPressed.ENTER)
+					else if (controls.ACCEPT)
 					{
 						addKey(defaultKeys[curSelected]);
 						save();

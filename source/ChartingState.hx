@@ -2088,9 +2088,9 @@ class ChartingState extends MusicBeatState
 
 				if (FlxG.keys.pressed.SHIFT)
 				{
-					if (FlxG.keys.justPressed.RIGHT)
+					if (controls.RIGHT_P)
 						speed += 0.1;
-					else if (FlxG.keys.justPressed.LEFT)
+					else if (controls.LEFT_P)
 						speed -= 0.1;
 
 					if (speed > 3)
@@ -2100,9 +2100,9 @@ class ChartingState extends MusicBeatState
 				}
 				else
 				{
-					if (FlxG.keys.justPressed.RIGHT && !FlxG.keys.pressed.CONTROL)
+					if (controls.RIGHT_P && !FlxG.keys.pressed.CONTROL)
 						goToSection(curSection + 1);
-					else if (FlxG.keys.justPressed.LEFT && !FlxG.keys.pressed.CONTROL)
+					else if (controls.LEFT_P && !FlxG.keys.pressed.CONTROL)
 						goToSection(curSection - 1);
 				}
 
@@ -2200,15 +2200,15 @@ class ChartingState extends MusicBeatState
 					}
 				}
 
-				if (FlxG.keys.justPressed.UP || FlxG.keys.justPressed.DOWN)
+				if (controls.UP_P || controls.DOWN_P)
 				{
 					var offsetSteps = FlxG.keys.pressed.CONTROL ? 16 : 1;
 					var offsetSeconds = Conductor.stepCrochet * offsetSteps;
 
 					var offset:Float = 0;
-					if (FlxG.keys.justPressed.UP)
+					if (controls.UP_P)
 						offset -= offsetSeconds;
-					if (FlxG.keys.justPressed.DOWN)
+					if (controls.DOWN_P)
 						offset += offsetSeconds;
 
 					offsetSelectedNotes(offset);
@@ -2326,7 +2326,7 @@ class ChartingState extends MusicBeatState
 
 			snapText.text = "";
 
-			if (FlxG.keys.justPressed.RIGHT && FlxG.keys.pressed.CONTROL)
+			if (controls.RIGHT_P && FlxG.keys.pressed.CONTROL)
 			{
 				snapSelection++;
 				var index = 6;
@@ -2346,7 +2346,7 @@ class ChartingState extends MusicBeatState
 				}
 				Debug.logTrace("new snap " + snap + " | " + snapSelection);
 			}
-			if (FlxG.keys.justPressed.LEFT && FlxG.keys.pressed.CONTROL)
+			if (controls.LEFT_P && FlxG.keys.pressed.CONTROL)
 			{
 				snapSelection--;
 				if (snapSelection > 6)
@@ -2613,7 +2613,7 @@ class ChartingState extends MusicBeatState
 
 			if (doInput)
 			{
-				if (FlxG.keys.justPressed.ENTER)
+				if (controls.ACCEPT)
 				{
 					lastSection = curSection;
 

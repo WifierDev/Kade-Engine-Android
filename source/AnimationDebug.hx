@@ -336,7 +336,7 @@ class AnimationDebug extends MusicBeatState
 			// TO MOUSE MOVEMENT?????????
 		}
 
-		if (FlxG.keys.justPressed.ESCAPE)
+		if (controls.BACK)
 		{
 			FlxG.mouse.visible = false;
 			FlxG.switchState(new PlayState());

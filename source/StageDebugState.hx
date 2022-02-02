@@ -205,7 +205,7 @@ class StageDebugState extends FlxState
 
 		posText.text = (curCharString + " X: " + curChar.x + " Y: " + curChar.y + " Rotation: " + curChar.angle);
 
-		if (FlxG.keys.justPressed.ESCAPE)
+		if (controls.BACK)
 		{
 			FlxG.switchState(new PlayState());
 			PlayState.stageTesting = true;

@@ -345,14 +345,14 @@ class OptionsMenu extends FlxSubState
 		var any = false;
 		var escape = false;
 
-		accept = FlxG.keys.justPressed.ENTER;
-		right = FlxG.keys.justPressed.RIGHT;
-		left = FlxG.keys.justPressed.LEFT;
-		up = FlxG.keys.justPressed.UP;
-		down = FlxG.keys.justPressed.DOWN;
+		accept = controls.ACCEPT;
+		right = controls.RIGHT_P;
+		left = controls.LEFT_P;
+		up = controls.UP_P;
+		down = controls.DOWN_P;
 
 		any = FlxG.keys.justPressed.ANY;
-		escape = FlxG.keys.justPressed.ESCAPE;
+		escape = controls.BACK;
 
 		if (selectedCat != null && !isInCat)
 		{
