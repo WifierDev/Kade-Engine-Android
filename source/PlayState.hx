@@ -967,6 +967,8 @@ class PlayState extends MusicBeatState
 			doof.cameras = [camHUD];
 		kadeEngineWatermark.cameras = [camHUD];
 
+		addAndroidControls();
+
 		startingSong = true;
 
 		trace('starting');
@@ -1131,6 +1133,10 @@ class PlayState extends MusicBeatState
 	function startCountdown():Void
 	{
 		inCutscene = false;
+
+		#if android
+        androidc.visible = true;
+        #end
 
 		appearStaticArrows();
 		// generateStaticArrows(0);
@@ -2099,7 +2105,7 @@ class PlayState extends MusicBeatState
 		var pauseBind = FlxKey.fromString(FlxG.save.data.pauseBind);
 		var gppauseBind = FlxKey.fromString(FlxG.save.data.gppauseBind);
 
-		if ((FlxG.keys.anyJustPressed([pauseBind]))
+		if ((FlxG.keys.anyJustPressed([pauseBind])#if android || FlxG.android.justReleased.BACK #end)
 			&& startedCountdown
 			&& canPause
 			&& !cannotDie)
