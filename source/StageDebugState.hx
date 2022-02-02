@@ -15,7 +15,7 @@ import openfl.net.FileReference;
 
 using StringTools;
 
-class StageDebugState extends FlxState
+class StageDebugState extends MusicBeatState
 {
 	public var daStage:String;
 	public var daBf:String;

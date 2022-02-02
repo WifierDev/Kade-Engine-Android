@@ -48,7 +48,7 @@ class CastomAndroidControls extends MusicBeatState
 		curSelected = config.getcontrolmode();
 
 	    var exitbutton = new FlxUIButton(FlxG.width - 650, 50,"Exit", () -> {
-			FlxG.switchState(new OptionsMenu());	    	
+			FlxG.switchState(new OptionsDirect());	    	
 	    });
 		exitbutton.resize(125,50);
 		exitbutton.setLabelFormat("VCR OSD Mono",24,FlxColor.BLACK,"center");
@@ -56,7 +56,7 @@ class CastomAndroidControls extends MusicBeatState
 
 		var savebutton = new FlxUIButton((exitbutton.x + exitbutton.width + 25), 50,"Save And Exit",() -> {
 			save();
-			FlxG.switchState(new OptionsMenu());
+			FlxG.switchState(new OptionsDirect());
 		});
 		savebutton.resize(250,50);
 		savebutton.setLabelFormat("VCR OSD Mono",24,FlxColor.BLACK,"center");

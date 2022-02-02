@@ -78,7 +78,7 @@ class OptionCata extends FlxSprite
 	}
 }
 
-class OptionsMenu extends FlxSubState
+class OptionsMenu extends MusicBeatSubstate
 {
 	public static var instance:OptionsMenu;
 
